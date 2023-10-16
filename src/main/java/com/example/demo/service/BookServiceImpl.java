@@ -6,54 +6,76 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
     private BookDAO bookDao;
 
-    public void setBookDao(BookDAO bookDao) {
+    public void BookDao(BookDAO bookDao) {
         this.bookDao = bookDao;
     }
 
     @Override
     @Transactional
     public void addBook(Book book) {
-        this.bookDao.addBook(book);
+        bookDao.save(book);
     }
 
     @Override
     @Transactional
     public void updateBook(Book book) {
-        this.bookDao.updateBook(book);
+        Optional<Book> optionalBook = bookDao.findById(book.getId());
+        if (optionalBook.isEmpty()) {
+            throw new IllegalArgumentException("Book not found");
+        } else {
+            bookDao.save(book);
+        }
+
+
     }
 
     @Override
     @Transactional
-    public void removeBook(int id) {
-        this.bookDao.removeBook(id);
+    public void removeBook(long id) {
+        Optional<Book> optionalBook = bookDao.findById(id);
+        if (optionalBook.isEmpty()) {
+            throw new IllegalArgumentException("Book not found");
+        } else {
+            bookDao.deleteById(id);
+        }
     }
 
     @Override
     @Transactional
-    public Book getBooksById(int id) {
-        return this.bookDao.getBooksById(id);
+    public Optional<Book> getBooksById(long id) {
+        return bookDao.findById(id);
     }
 
     @Override
     @Transactional
     public List<Book> listBooks() {
-        return this.bookDao.listBooks();
+        return (List<Book>) bookDao.findAll();
     }
 
-    @Override
+
     @Transactional
     public Book getBooks(String search) {
-        return this.bookDao.getBooks(search);
+        return null;
     }
+
 
     @Override
     @Transactional
-    public void readBook(boolean isUpdate, Book book) {
-        this.bookDao.readBook(isUpdate, book);
+    public void readBook(boolean isRead, long id) {
+        Optional<Book> optionalBook = bookDao.findById(id);
+        if (optionalBook.isEmpty()) {
+            throw new IllegalArgumentException("Book not found");
+        } else {
+            bookDao.findById(readAlready,id);
+            bookDao.save();
+
+        }
+
     }
 }

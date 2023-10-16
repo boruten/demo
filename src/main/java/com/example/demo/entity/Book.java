@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -9,7 +11,7 @@ public class Book {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "title")
     private String title;
     @Column(name = "description")
@@ -25,7 +27,7 @@ public class Book {
 
     public Book() {
     }
-    public Book(Integer id, String title, String description,
+    public Book(Long id, String title, String description,
                 String author, String isbn, int printYear, boolean readAlready) {
         this.id = id;
         this.title = title;
@@ -36,11 +38,11 @@ public class Book {
         this.readAlready = readAlready;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
