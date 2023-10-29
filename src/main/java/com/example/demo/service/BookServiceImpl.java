@@ -68,14 +68,14 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void readBook(boolean isRead, long id) {
-        Optional<Book> optionalBook = bookDao.findById(id);
+        /*Optional<Book> optionalBook = bookDao.findById(id);
         if (optionalBook.isEmpty()) {
             throw new IllegalArgumentException("Book not found");
         } else {
             bookDao.findById(readAlready,id);
             bookDao.save();
 
-        }
+        }*/
 
     }
 }

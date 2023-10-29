@@ -1,0 +1,18 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-book-table" author="Eremin Vitaliy">
+        <createTable tableName="book" remarks="Книга">
+            <column name="id" remarks="Идентификатор" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="title" type="varchar(64)"/>
+            <column name="description" type="text"/>
+            <column name="author" type="varchar(128)"/>
+            <column name="isbn" type="varchar(128)"/>
+            <column name="printYear" type="int"/>
+            <column name="readAlready" type="boolean"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
