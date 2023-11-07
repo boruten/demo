@@ -18,9 +18,9 @@ public class Book {
     private String author;
     @Column(name = "isbn")
     private String isbn;
-    @Column(name = "printYear")
+    @Column(name = "print_year")
     private int printYear;
-    @Column(name = "readAlready")
+    @Column(name = "read_already")
     private boolean readAlready;
 
     public Book() {
