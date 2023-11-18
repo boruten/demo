@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
-    public void addBook(Book book);
+    public Book addBook(Book book);
 
     public void updateBook(Book book);
 

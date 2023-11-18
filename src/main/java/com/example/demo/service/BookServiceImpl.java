@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.BookDAO;
 import com.example.demo.entity.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,16 +11,14 @@ import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
-    private BookDAO bookDao;
 
-    public void BookDao(BookDAO bookDao) {
-        this.bookDao = bookDao;
-    }
+    @Autowired
+    private BookDAO bookDao;
 
     @Override
     @Transactional
-    public void addBook(Book book) {
-        bookDao.save(book);
+    public Book addBook(Book book) {
+        return bookDao.save(book);
     }
 
     @Override
@@ -68,14 +67,14 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void readBook(boolean isRead, long id) {
-        Optional<Book> optionalBook = bookDao.findById(id);
+        /*Optional<Book> optionalBook = bookDao.findById(id);
         if (optionalBook.isEmpty()) {
             throw new IllegalArgumentException("Book not found");
         } else {
             bookDao.findById(readAlready,id);
             bookDao.save();
 
-        }
+        }*/
 
     }
 }

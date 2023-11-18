@@ -22,23 +22,18 @@ public class BooksController {
 
 
     @GetMapping(value = "/books")
-    public String listBooks() {
+    public List<Book> listBooks() {
         List<Book> books = this.bookService.listBooks();
-        return books.toString();
+        return books;
     }
 
     @PostMapping(value = "/books/add")
-    public String addBook(Book book) {
-        if (book.getId() == 0) {
-            this.bookService.addBook(book);
-        } else {
-            this.bookService.updateBook(book);
-        }
-        return String.valueOf(book);
+    public Book addBook(@RequestBody Book book) {
+        return this.bookService.addBook(book);
     }
 
     @DeleteMapping(value = "{id}")
-    public void removeBook(long id) {
+    public void removeBook(@PathVariable long id) {
         this.bookService.removeBook(id);
     }
 
